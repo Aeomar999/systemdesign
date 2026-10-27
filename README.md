@@ -1,8 +1,8 @@
-# System Design
+﻿# System Design
 
 Hey, welcome to the course. I hope this course provides a great learning experience.
 
-_This course is also available on my [website](https://karanpratapsingh.com/courses/system-design) and as an ebook on [leanpub](https://leanpub.com/systemdesign). Please leave a ⭐ as motivation if this was helpful!_
+_This course is also available on my [website](https://karanpratapsingh.com/courses/system-design) and as an ebook on [leanpub](https://leanpub.com/systemdesign). Please leave a â­ as motivation if this was helpful!_
 
 # Table of contents
 
@@ -81,6 +81,15 @@ _This course is also available on my [website](https://karanpratapsingh.com/cour
   - [Netflix](#netflix)
   - [Uber](#uber)
 
+- **Chapter VI â€” Roadmap additions**
+
+  - [Performance and consistency trade-offs](#performance-and-consistency-trade-offs)
+  - [Background jobs](#background-jobs)
+  - [Caching strategies](#caching-strategies)
+  - [Operations and monitoring](#operations-and-monitoring)
+  - [Cloud design patterns](#cloud-design-patterns)
+  - [Reliability patterns](#reliability-patterns)
+
 - **Appendix**
 
   - [Next Steps](#next-steps)
@@ -104,6 +113,8 @@ to think from a high level as these decisions are very difficult to correct late
 also makes it easier to reason about and manage architectural changes as the system evolves.
 
 # IP
+
+![ip-ipv4-vs-ipv6](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/ip-ipv4-vs-ipv6.png)
 
 An IP address is a unique address that identifies a device on the internet or a local network. IP stands for _"Internet Protocol"_, which is the set of rules governing the format of data sent via the internet or local network.
 
@@ -157,6 +168,8 @@ _Example: They are more commonly used for consumer equipment and personal use._
 
 # OSI Model
 
+![osi-7-layers](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/osi-7-layers.png)
+
 The OSI Model is a logical and conceptual model that defines network communication used by systems open to interconnection and communication with other systems. The Open System Interconnection (OSI Model) also defines a logical network and effectively describes computer packet transfer by using various layers of protocols.
 
 The OSI Model can be seen as a universal language for computer networking. It's based on the concept of splitting up a communication system into seven abstract layers, each one stacked upon the last.
@@ -175,6 +188,8 @@ While this model is not directly implemented in the TCP/IP networks that are mos
 ## Layers
 
 The seven abstraction layers of the OSI model can be defined as follows, from top to bottom:
+
+![osi](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/osi.png)
 
 ![osi-model](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/osi-model/osi-model.png)
 
@@ -208,9 +223,13 @@ This layer includes the physical equipment involved in the data transfer, such a
 
 # TCP and UDP
 
+![tcp-vs-udp](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/tcp-vs-udp.png)
+
 ## TCP
 
 Transmission Control Protocol (TCP) is connection-oriented, meaning once a connection has been established, data can be transmitted in both directions. TCP has built-in systems to check for errors and to guarantee data will be delivered in the order it was sent, making it the perfect protocol for transferring information like still images, data files, and web pages.
+
+![tcp-udp](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/tcp-udp.png)
 
 ![tcp](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/tcp-and-udp/tcp.png)
 
@@ -246,6 +265,10 @@ Earlier we learned about IP addresses that enable every machine to connect with 
 This brings us to Domain Name System (DNS) which is a hierarchical and decentralized naming system used for translating human-readable domain names to IP addresses.
 
 ## How DNS works
+
+![dns-resolution](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/dns-resolution.png)
+
+![domain-name-system](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/domain-name-system.png)
 
 ![how-dns-works](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/domain-name-system/how-dns-works.png)
 
@@ -360,7 +383,11 @@ These are some widely used managed DNS solutions:
 
 # Load Balancing
 
+![lb-l4-vs-l7](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/lb-l4-vs-l7.png)
+
 Load balancing lets us distribute incoming network traffic across multiple resources ensuring high availability and reliability by sending requests only to resources that are online. This provides the flexibility to add or subtract resources as demand dictates.
+
+![load-balancing](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/load-balancing.png)
 
 ![load-balancing](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/load-balancing/load-balancer.png)
 
@@ -474,9 +501,13 @@ Following are some of the load balancing solutions commonly used in the industry
 
 # Clustering
 
+![clustering-active-active-passive](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/clustering-active-active-passive.png)
+
 At a high level, a computer cluster is a group of two or more computers, or nodes, that run in parallel to achieve a common goal. This allows workloads consisting of a high number of individual, parallelizable tasks to be distributed among the nodes in the cluster. As a result, these tasks can leverage the combined memory and processing power of each computer to increase overall performance.
 
 To build a computer cluster, the individual nodes should be connected to a network to enable internode communication. The software can then be used to join the nodes together and form a cluster. It may have a shared storage device and/or local storage on each node.
+
+![clustering](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/clustering.png)
 
 ![cluster](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/clustering/cluster.png)
 
@@ -541,7 +572,11 @@ Clustering is commonly used in the industry, and often many technologies offer s
 
 # Caching
 
+![caching-write-policies](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/caching-write-policies.png)
+
 _"There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton_
+
+![caching](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/caching.png)
 
 ![caching](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/caching/caching.png)
 
@@ -613,6 +648,8 @@ Where the write is only done to the caching layer and the write is confirmed as 
 
 ## Eviction policies
 
+![caching-lru-eviction](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/caching-lru-eviction.png)
+
 Following are some of the most common cache eviction policies:
 
 - **First In First Out (FIFO)**: The cache evicts the first block accessed first without any regard to how often or how many times it was accessed before.
@@ -674,7 +711,11 @@ Here are some commonly used technologies for caching:
 
 # Content Delivery Network (CDN)
 
+![cdn-origin-edge](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/cdn-origin-edge.png)
+
 A content delivery network (CDN) is a geographically distributed group of servers that work together to provide fast delivery of internet content. Generally, static files such as HTML/CSS/JS, photos, and videos are served from CDN.
+
+![cdn](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/cdn.png)
 
 ![cdn-map](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/content-delivery-network/cdn-map.png)
 
@@ -729,6 +770,8 @@ Here are some widely used CDNs:
 
 # Proxy
 
+![proxy-forward-reverse](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/proxy-forward-reverse.png)
+
 A proxy server is an intermediary piece of hardware/software sitting between the client and the backend server. It receives requests from clients and relays them to the origin servers. Typically, proxies are used to filter requests, log requests, or sometimes transform requests (by adding/removing headers, encrypting/decrypting, or compression).
 
 ## Types
@@ -738,6 +781,8 @@ There are two types of proxies:
 ### Forward Proxy
 
 A forward proxy, often called a proxy, proxy server, or web proxy is a server that sits in front of a group of client machines. When those computers make requests to sites and services on the internet, the proxy server intercepts those requests and then communicates with web servers on behalf of those clients, like a middleman.
+
+![proxy](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/proxy.png)
 
 ![forward-proxy](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/proxy/forward-proxy.png)
 
@@ -848,6 +893,8 @@ A fault-tolerant system has no service interruption but a significantly higher c
 # Scalability
 
 Scalability is the measure of how well a system responds to changes by adding or removing resources to meet demands.
+
+![scaling](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/scaling.png)
 
 ![scalability](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-I/scalability/scalability.png)
 
@@ -982,6 +1029,8 @@ Data in a table is recorded in rows. There can be thousands or millions of rows 
 
 ## Types
 
+![db-dbms](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/db-dbms.png)
+
 ![database-types](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/databases-and-dbms/database-types.png)
 
 Below are different types of databases:
@@ -1011,6 +1060,9 @@ Some common challenges faced while running databases at scale:
 # SQL databases
 
 A SQL (or relational) database is a collection of data items with pre-defined relationships between them. These items are organized as a set of tables with columns and rows. Tables are used to hold information about the objects to be represented in the database. Each column in a table holds a certain kind of data and a field stores the actual value of an attribute. The rows in the table represent a collection of related values of one object or entity.
+
+
+![sql-databases](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/sql-databases.png)
 
 Each row in a table could be marked with a unique identifier called a primary key, and rows among multiple tables can be made related using foreign keys. This data can be accessed in many different ways without re-organizing the database tables themselves. SQL databases usually follow the [ACID consistency model](https://karanpratapsingh.com/courses/system-design/acid-and-base-consistency-models#acid).
 
@@ -1056,6 +1108,8 @@ Here are some commonly used relational databases:
 # NoSQL databases
 
 NoSQL is a broad category that includes any database that doesn't use SQL as its primary data access language. These types of databases are also sometimes referred to as non-relational databases. Unlike in relational databases, data in a NoSQL database doesn't have to conform to a pre-defined schema. NoSQL databases follow [BASE consistency model](https://karanpratapsingh.com/courses/system-design/acid-and-base-consistency-models#base).
+
+![nosql-databases](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/nosql-databases.png)
 
 Below are different types of NoSQL databases:
 
@@ -1205,7 +1259,11 @@ Multi-model databases combine different database models (i.e. relational, graph,
 
 # SQL vs NoSQL databases
 
+![sql-vs-nosql-comparison](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/sql-vs-nosql-comparison.png)
+
 In the world of databases, there are two main types of solutions, SQL (relational) and NoSQL (non-relational) databases. Both of them differ in the way they were built, the kind of information they store, and how they store it. Relational databases are structured and have predefined schemas while non-relational databases are unstructured, distributed, and have a dynamic schema.
+
+![sql-vs-nosql](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/sql-vs-nosql.png)
 
 ## High-level differences
 
@@ -1267,7 +1325,11 @@ Replication is a process that involves sharing information to ensure consistency
 
 ## Master-Slave Replication
 
+![db-master-slave](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/db-master-slave.png)
+
 The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. Slaves can also replicate additional slaves in a tree-like fashion. If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
+
+![database-replication](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/database-replication.png)
 
 ![master-slave-replication](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/database-replication/master-slave-replication.png)
 
@@ -1312,6 +1374,8 @@ In contrast, asynchronous replication copies the data to the replica after the d
 
 Indexes are well known when it comes to databases, they are used to improve the speed of data retrieval operations on the data store. An index makes the trade-offs of increased storage overhead, and slower writes (since we not only have to write the data but also have to update the index) for the benefit of faster reads. Indexes are used to quickly locate data without having to examine every row in a database table. Indexes can be created using one or more columns of a database table, providing the basis for both rapid random lookups and efficient access to ordered records.
 
+![indexes](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/indexes.png)
+
 ![indexes](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/indexes/indexes.png)
 
 An index is a data structure that can be perceived as a table of contents that points us to the location where actual data lives. So when we create an index on a column of a table, we store that column and a pointer to the whole row in the index. Indexes are also used to create different views of the same data. For large data sets, this is an excellent way to specify different filters or sorting schemes without resorting to creating multiple additional copies of the data.
@@ -1335,6 +1399,8 @@ In a sparse index, index records are created only for some of the records.
 Sparse indexes require less maintenance than dense indexes at write-time since they only contain a subset of the values. This lighter maintenance burden means that inserts, updates, and deletes will be faster. Having fewer entries also means that the index will use less memory. Finding data is slower since a scan across the page typically follows the binary search. Sparse indexes are also optional when working with ordered data.
 
 # Normalization and Denormalization
+
+![normalization-denormalization](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/normalization-denormalization.png)
 
 ## Terms
 
@@ -1436,7 +1502,7 @@ Boyce-Codd normal form (or BCNF) is a slightly stronger version of the third nor
 For a table to be in the Boyce-Codd normal form (BCNF), it should follow the following rules:
 
 - Satisfies the third normal form (3NF).
-- For every functional dependency X → Y, X should be the super key.
+- For every functional dependency X â†’ Y, X should be the super key.
 
 _There are more normal forms such as 4NF, 5NF, and 6NF but we won't discuss them here. Check out this [amazing video](https://www.youtube.com/watch?v=GFQaEYEc8_8) that goes into detail._
 
@@ -1490,7 +1556,11 @@ Below are some disadvantages of denormalization:
 
 # ACID and BASE consistency models
 
+![acid-vs-base](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/acid-vs-base.png)
+
 Let's discuss the ACID and BASE consistency models.
+
+![acid-base](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/acid-base.png)
 
 ## ACID
 
@@ -1546,6 +1616,8 @@ On the other hand, planning around BASE limitations can sometimes be a major dis
 
 CAP theorem states that a distributed system can deliver only two of the three desired characteristics Consistency, Availability, and Partition tolerance (CAP).
 
+![cap](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/cap.png)
+
 ![cap-theorem](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/cap-theorem/cap-theorem.png)
 
 Let's take a detailed look at the three distributed system characteristics to which the CAP theorem refers.
@@ -1592,6 +1664,8 @@ PACELC extends the CAP theorem by introducing latency (L) as an additional attri
 
 _The PACELC theorem was first described by [Daniel J. Abadi](https://scholar.google.com/citations?user=zxeEF2gAAAAJ)._
 
+![pacelc](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/pacelc.png)
+
 ![pacelc-theorem](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/pacelc-theorem/pacelc-theorem.png)
 
 PACELC theorem was developed to address a key limitation of the CAP theorem as it makes no provision for performance or latency.
@@ -1607,6 +1681,8 @@ _Usually, relational databases support ACID transactions, and non-relational dat
 ## States
 
 A transaction in a database can be in one of the following states:
+
+![transactions](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/transactions.png)
 
 ![transaction-states](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/transactions/transaction-states.png)
 
@@ -1652,6 +1728,8 @@ In other words, all the nodes must commit, or all must abort and the entire tran
 Now, let's look at some popular solutions for distributed transactions:
 
 ## Two-Phase commit
+
+![distributed-transactions](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/distributed-transactions.png)
 
 ![two-phase-commit](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/distributed-transactions/two-phase-commit.png)
 
@@ -1732,6 +1810,8 @@ There are two common implementation approaches:
 
 # Sharding
 
+![db-sharding](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/db-sharding.png)
+
 Before we discuss sharding, let's talk about data partitioning:
 
 ## Data Partitioning
@@ -1755,6 +1835,8 @@ In this tutorial, we will specifically focus on sharding.
 ## What is sharding?
 
 Sharding is a database architecture pattern related to _horizontal partitioning_, which is the practice of separating one table's rows into multiple different tables, known as _partitions_ or _shards_. Each partition has the same schema and columns, but also a subset of the shared data. Likewise, the data held in each is unique and independent of the data held in other partitions.
+
+![sharding](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/sharding.png)
 
 ![sharding](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/sharding/sharding.png)
 
@@ -1812,11 +1894,15 @@ Here are some reasons why sharding might be the right choice:
 
 # Consistent Hashing
 
+![consistent-hashing-ring](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/consistent-hashing-ring.png)
+
 Let's first understand the problem we're trying to solve.
 
 ## Why do we need this?
 
 In traditional hashing-based distribution methods, we use a hash function to hash our partition keys (i.e. request ID or IP). Then if we use the modulo against the total number of nodes (server or databases). This will give us the node where we want to route our request.
+
+![consistent-hashing](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/consistent-hashing.png)
 
 ![simple-hashing](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/consistent-hashing/simple-hashing.png)
 
@@ -1963,6 +2049,8 @@ Federation (or functional partitioning) splits up databases by function. The fed
 
 All of the components in a federation are tied together by one or more federal schemas that express the commonality of data throughout the federation. These federated schemas are used to specify the information that can be shared by the federation components and to provide a common basis for communication among them.
 
+![federated-database](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/federated-database.png)
+
 ![database-federation](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-II/database-federation/database-federation.png)
 
 Federation also provides a cohesive, unified view of data derived from multiple sources. The data sources for federated systems can include databases and various other forms of structured and unstructured data.
@@ -1998,6 +2086,8 @@ Below are some disadvantages of federated databases:
 # N-tier architecture
 
 N-tier architecture divides an application into logical layers and physical tiers. Layers are a way to separate responsibilities and manage dependencies. Each layer has a specific responsibility. A higher layer can use services in a lower layer, but not the other way around.
+
+![n-tier-architecture](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/n-tier-architecture.png)
 
 ![n-tier-architecture](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/n-tier-architecture/n-tier-architecture.png)
 
@@ -2050,7 +2140,11 @@ Below are some disadvantages of N-tier architecture:
 
 # Message Brokers
 
+![mq-vs-pubsub](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/mq-vs-pubsub.png)
+
 A message broker is a software that enables applications, systems, and services to communicate with each other and exchange information. The message broker does this by translating messages between formal messaging protocols. This allows interdependent services to _"talk"_ with one another directly, even if they were written in different languages or implemented on different platforms.
+
+![message-brokers](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/message-brokers.png)
 
 ![message-broker](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/message-brokers/message-broker.png)
 
@@ -2091,6 +2185,8 @@ Here are some commonly used message brokers:
 A message queue is a form of service-to-service communication that facilitates asynchronous communication. It asynchronously receives messages from producers and sends them to consumers.
 
 Queues are used to effectively manage requests in large-scale distributed systems. In small systems with minimal processing loads and small databases, writes can be predictably fast. However, in more complex and large systems writes can take an almost non-deterministic amount of time.
+
+![message-queues](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/message-queues.png)
 
 ![message-queue](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/message-queues/message-queue.png)
 
@@ -2171,6 +2267,8 @@ Following are some widely used message queues:
 
 Similar to a message queue, publish-subscribe is also a form of service-to-service communication that facilitates asynchronous communication. In a pub/sub model, any message published to a topic is pushed immediately to all the subscribers of the topic.
 
+![pubsub](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/pubsub.png)
+
 ![publish-subscribe](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/publish-subscribe/publish-subscribe.png)
 
 The subscribers to the message topic often perform different functions, and can each do something different with the message in parallel. The publisher doesn't need to know who is using the information that it is broadcasting, and the subscribers don't need to know where the message comes from. This style of messaging is a bit different than message queues, where the component that sends the message often knows the destination it is sending to.
@@ -2231,6 +2329,8 @@ Here are some commonly used publish-subscribe technologies:
 
 An Enterprise Service Bus (ESB) is an architectural pattern whereby a centralized software component performs integrations between applications. It performs transformations of data models, handles connectivity, performs message routing, converts communication protocols, and potentially manages the composition of multiple requests. The ESB can make these integrations and transformations available as a service interface for reuse by new applications.
 
+![enterprise-service-bus](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/enterprise-service-bus.png)
+
 ![enterprise-service-bus](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/enterprise-service-bus/enterprise-service-bus.png)
 
 ## Advantages
@@ -2262,9 +2362,13 @@ Below are some widely used Enterprise Service Bus (ESB) technologies:
 
 # Monoliths and Microservices
 
+![monolith-vs-microservices](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/monolith-vs-microservices.png)
+
 ## Monoliths
 
 A monolith is a self-contained and independent application. It is built as a single unit and is responsible for not just a particular task, but can perform every step needed to satisfy a business need.
+
+![monoliths-microservices](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/monoliths-microservices.png)
 
 ![monolith](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/monoliths-microservices/monolith.png)
 
@@ -2421,6 +2525,8 @@ Event-driven architectures have three key components:
 - **Event routers**: Filters and pushes the events to consumers.
 - **Event consumers**: Uses events to reflect changes in the system.
 
+![event-driven-architecture](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/event-driven-architecture.png)
+
 ![event-driven-architecture](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/event-driven-architecture/event-driven-architecture.png)
 
 _Note: Dots in the diagram represents different events in the system._
@@ -2477,6 +2583,8 @@ Here are some widely used technologies for implementing event-driven architectur
 
 Instead of storing just the current state of the data in a domain, use an append-only store to record the full series of actions taken on that data. The store acts as the system of record and can be used to materialize the domain objects.
 
+![event-sourcing](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/event-sourcing.png)
+
 ![event-sourcing](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/event-sourcing/event-sourcing.png)
 
 This can simplify tasks in complex domains, by avoiding the need to synchronize the data model and the business domain, while improving performance, scalability, and responsiveness. It can also provide consistency for transactional data, and maintain full audit trails and history that can enable compensating actions.
@@ -2509,6 +2617,8 @@ Following are the disadvantages of event sourcing:
 Command Query Responsibility Segregation (CQRS) is an architectural pattern that divides a system's actions into commands and queries. It was first described by [Greg Young](https://twitter.com/gregyoung).
 
 In CQRS, a _command_ is an instruction, a directive to perform a specific task. It is an intention to change something and doesn't return a value, only an indication of success or failure. And, a _query_ is a request for information that doesn't change the system's state or cause any side effects.
+
+![cqrs](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/cqrs.png)
 
 ![command-and-query-responsibility-segregation](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/command-and-query-responsibility-segregation/command-and-query-responsibility-segregation.png)
 
@@ -2550,7 +2660,11 @@ Here are some scenarios where CQRS will be helpful:
 
 # API Gateway
 
+![api-gateway](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/api-gateway.png)
+
 The API Gateway is an API management tool that sits between a client and a collection of backend services. It is a single entry point into a system that encapsulates the internal system architecture and provides an API that is tailored to each client. It also has other responsibilities such as authentication, monitoring, load balancing, caching, throttling, logging, etc.
+
+![api-gateway](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/api-gateway.png)
 
 ![api-gateway](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/api-gateway/api-gateway.png)
 
@@ -2625,7 +2739,11 @@ Following are some widely used gateways technologies:
 
 # REST, GraphQL, gRPC
 
+![rest-graphql-grpc-styles](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/rest-graphql-grpc-styles.png)
+
 A good API design is always a crucial part of any system. But it is also important to pick the right API technology. So, in this tutorial, we will briefly discuss different API technologies such as REST, GraphQL, and gRPC.
+
+![rest-graphql-grpc](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/rest-graphql-grpc.png)
 
 ## What's an API?
 
@@ -2904,6 +3022,8 @@ HTTP Long polling is a technique used to push information to a client as soon as
 
 In Long polling, the server does not close the connection once it receives a request from the client. Instead, the server responds only if any new message is available or a timeout threshold is reached.
 
+![lp-ws-sse](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/lp-ws-sse.png)
+
 ![long-polling](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/long-polling-websockets-server-sent-events/long-polling.png)
 
 Once the client receives a response, it immediately sends a new request to the server to have a new pending connection to send data to the client, and the operation is repeated. With this approach, the server emulates a real-time server push feature.
@@ -3008,6 +3128,8 @@ For example, San Francisco with coordinates `37.7564, -122.4016` can be represen
 
 Geohash is a hierarchical spatial index that uses Base-32 alphabet encoding, the first character in a geohash identifies the initial location as one of the 32 cells. This cell will also contain 32 cells. This means that to represent a point, the world is recursively divided into smaller and smaller cells with each additional bit until the desired precision is attained. The precision factor also determines the size of the cell.
 
+![geohashing-quadtrees](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/geohashing-quadtrees.png)
+
 ![geohashing](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/geohashing.png)
 
 Geohashing guarantees that points are spatially closer if their Geohashes share a longer prefix which means the more characters in the string, the more precise the location. For example, geohashes `9q8yy9mf` and `9q8yy9vx` are spatially closer as they share the prefix `9q8yy9`.
@@ -3084,7 +3206,11 @@ Below are some common uses of quadtrees:
 
 # Circuit breaker
 
+![circuit-breaker-states](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/circuit-breaker-states.png)
+
 The circuit breaker is a design pattern used to detect failures and encapsulates the logic of preventing a failure from constantly recurring during maintenance, temporary external system failure, or unexpected system difficulties.
+
+![circuit-breaker](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/circuit-breaker.png)
 
 ![circuit-breaker](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/circuit-breaker/circuit-breaker.png)
 
@@ -3112,7 +3238,11 @@ In this state, the circuit breaker allows a limited number of requests from the 
 
 # Rate Limiting
 
+![rate-limiting-token-bucket](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/rate-limiting-token-bucket.png)
+
 Rate limiting refers to preventing the frequency of an operation from exceeding a defined limit. In large-scale systems, rate limiting is commonly used to protect underlying services and resources. Rate limiting is generally used as a defensive mechanism in distributed systems, so that shared resources can maintain availability. It also protects our APIs from unintended or malicious overuse by limiting the number of requests that can reach our API in a given period of time.
+
+![rate-limiting](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/rate-limiting.png)
 
 ![rate-limiting](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/rate-limiting/rate-limiting.png)
 
@@ -3168,6 +3298,9 @@ One way to avoid this problem is to use some sort of distributed locking mechani
 # Idempotency
 
 An operation is idempotent if performing it multiple times has the same effect as performing it once. Setting a user's email to `a@example.com` is idempotent, while _"add $10 to the balance"_ is not, because every repeat changes the result.
+
+
+![idempotency](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/idempotency.png)
 
 In distributed systems, networks drop responses, clients time out, and load balancers retry. As a result, the same request often reaches a server more than once. Idempotency is what makes it safe to retry.
 
@@ -3228,6 +3361,8 @@ Idempotency is not free. We need extra storage and lookups for keys, and additio
 
 # Service Discovery
 
+![service-discovery](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/service-discovery.png)
+
 Service discovery is the detection of services within a computer network. Service Discovery Protocol (SDP) is a networking standard that accomplishes the detection of networks by identifying resources.
 
 ## Why do we need Service Discovery?
@@ -3239,6 +3374,8 @@ In a monolithic application, services invoke one another through language-level 
 There are two main service discovery patterns:
 
 ### Client-side discovery
+
+![service-discovery](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/service-discovery.png)
 
 ![client-side-service-discovery](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/service-discovery/client-side-service-discovery.png)
 
@@ -3260,7 +3397,7 @@ We also need a way to obtain service information, often known as service registr
 
 ### Self-Registration
 
-When using the self-registration model, a service instance is responsible for registering and de-registering itself in the Service Registry. In addition, if necessary, a service instance sends heartbeat requests to keep its registration alive.
+When using the self-registration model, a service instance is responsible for registering and de-registering itself in the Service Registry. In addition, if necessary, a service instance sends heartbeatÂ requests to keep its registration alive.
 
 ### Third-party Registration
 
@@ -3282,6 +3419,8 @@ Here are some commonly used service discovery infrastructure tools:
 # SLA, SLO, SLI
 
 Let's briefly discuss SLA, SLO, and SLI. These are mostly related to the business and site reliability side of things but good to know nonetheless.
+
+![sla-slo-sli](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/sla-slo-sli.png)
 
 ## Why are they important?
 
@@ -3321,6 +3460,8 @@ Disaster recovery can have the following benefits:
 ## Terms
 
 Let's discuss some important terms relevantly for disaster recovery:
+
+![disaster-recovery](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/disaster-recovery.png)
 
 ![disaster-recovery](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/disaster-recovery/disaster-recovery.png)
 
@@ -3398,6 +3539,8 @@ Containers are lightweight and allow us to use just the computing resources we n
 
 ## Virtualization vs Containerization
 
+![virtualization-containerization](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/virtualization-containerization.png)
+
 ![virtualization-vs-containerization](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/virtual-machines-and-containers/virtualization-vs-containerization.png)
 
 In traditional virtualization, a hypervisor virtualizes physical hardware. The result is that each virtual machine contains a guest OS, a virtual copy of the hardware that the OS requires to run, and an application and its associated libraries and dependencies.
@@ -3405,6 +3548,8 @@ In traditional virtualization, a hypervisor virtualizes physical hardware. The r
 Instead of virtualizing the underlying hardware, containers virtualize the operating system so each container contains only the application and its dependencies making them much more lightweight than VMs. Containers also share the OS kernel and use a fraction of the memory VMs require.
 
 # OAuth 2.0 and OpenID Connect (OIDC)
+
+![oauth2-flow](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/oauth2-flow.png)
 
 ## OAuth 2.0
 
@@ -3424,6 +3569,8 @@ The OAuth 2.0 protocol defines the following entities:
 ### How does OAuth 2.0 work?
 
 Let's learn how OAuth 2.0 works:
+
+![oauth-openid-connect](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/oauth-openid-connect.png)
 
 ![oauth2](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/oauth2-and-openid-connect/oauth2.png)
 
@@ -3494,6 +3641,8 @@ SAML specifically enables identity federation, making it possible for identity p
 
 Now, let's discuss how Single Sign-On works:
 
+![sso](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/sso.png)
+
 ![sso](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/single-sign-on/sso.png)
 
 1. The user requests a resource from their desired application.
@@ -3543,6 +3692,8 @@ These are some commonly used Identity Providers (IdP):
 
 Let's briefly discuss some important communication security protocols such as SSL, TLS, and mTLS. I would say that from a _"big picture"_ system design perspective, this topic is not very important but still good to know about.
 
+![ssl-tls-mtls](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/ssl-tls-mtls.png)
+
 ## SSL
 
 SSL stands for Secure Sockets Layer, and it refers to a protocol for encrypting and securing communications that take place on the internet. It was first developed in 1995 but since has been deprecated in favor of TLS (Transport Layer Security).
@@ -3578,6 +3729,9 @@ Nowadays, mTLS is commonly used by microservices or distributed systems in a [ze
 # System Design Interviews
 
 System design is a very extensive topic and system design interviews are designed to evaluate your capability to produce technical solutions to abstract problems, as such, they're not designed for a specific answer. The unique aspect of system design interviews is the two-way nature between the candidate and the interviewer.
+
+
+![system-design-interviews](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/system-design-interviews.png)
 
 Expectations are quite different at different engineering levels as well. This is because someone with a lot of practical experience will approach it quite differently from someone who's new in the industry. As a result, it's hard to come up with a single strategy that will help us stay organized during the interview.
 
@@ -3681,6 +3835,8 @@ Finally, it's time to discuss bottlenecks and approaches to mitigate them. Here 
 Make sure to read the engineering blog of the company you're interviewing with. This will help you get a sense of what technology stack they're using and which problems are important to them.
 
 # URL Shortener
+
+![url-shortener-arch](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/url-shortener-arch.png)
 
 Let's design a URL shortener, similar to services like [Bitly](https://bitly.com), [TinyURL](https://tinyurl.com/app).
 
@@ -3816,6 +3972,8 @@ Here is our high-level estimate:
 ## Data model design
 
 Next, we will focus on the data model design. Here is our database schema:
+
+![url-shortener](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/url-shortener.png)
 
 ![url-shortener-datamodel](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-V/url-shortener/url-shortener-datamodel.png)
 
@@ -4086,6 +4244,8 @@ To make our system more resilient we can do the following:
 
 # WhatsApp
 
+![whatsapp-arch](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/whatsapp-arch.png)
+
 Let's design a [WhatsApp](https://whatsapp.com) like instant messaging service, similar to services like [Facebook Messenger](https://www.messenger.com), and [WeChat](https://www.wechat.com).
 
 ## What is WhatsApp?
@@ -4184,6 +4344,8 @@ Here is our high-level estimate:
 ## Data model design
 
 This is the general data model which reflects our requirements.
+
+![whatsapp](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/whatsapp.png)
 
 ![whatsapp-datamodel](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-V/whatsapp/whatsapp-datamodel.png)
 
@@ -4471,6 +4633,8 @@ To make our system more resilient we can do the following:
 
 # Twitter
 
+![twitter-newsfeed](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/twitter-newsfeed.png)
+
 Let's design a [Twitter](https://twitter.com) like social media service, similar to services like [Facebook](https://facebook.com), [Instagram](https://instagram.com), etc.
 
 ## What is Twitter?
@@ -4570,6 +4734,8 @@ Here is our high-level estimate:
 ## Data model design
 
 This is the general data model which reflects our requirements.
+
+![twitter](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/twitter.png)
 
 ![twitter-datamodel](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-V/twitter/twitter-datamodel.png)
 
@@ -4777,7 +4943,7 @@ For example, the `type` enum property can be of type tweet, similar to text, vid
 
 | id                  | userID              | type  | content                      | createdAt     |
 | ------------------- | ------------------- | ----- | ---------------------------- | ------------- |
-| ad34-291a-45f6-b36c | 7a2c-62c4-4dc8-b1bb | text  | Hey, this is my first tweet… | 1658905644054 |
+| ad34-291a-45f6-b36c | 7a2c-62c4-4dc8-b1bb | text  | Hey, this is my first tweetâ€¦ | 1658905644054 |
 | f064-49ad-9aa2-84a6 | 6aa2-2bc9-4331-879f | tweet | ad34-291a-45f6-b36c          | 1658906165427 |
 
 This is a very basic implementation. To improve this we can create a separate table itself to store retweets.
@@ -4971,6 +5137,8 @@ Here is our high-level estimate:
 ## Data model design
 
 This is the general data model which reflects our requirements.
+
+![netflix](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/netflix.png)
 
 ![netflix-datamodel](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-V/netflix/netflix-datamodel.png)
 
@@ -5381,6 +5549,8 @@ Here is our high-level estimate:
 
 This is the general data model which reflects our requirements.
 
+![uber](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/uber.png)
+
 ![uber-datamodel](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-V/uber/uber-datamodel.png)
 
 We have the following tables:
@@ -5707,6 +5877,158 @@ To make our system more resilient we can do the following:
 - Multiple instances and replicas for our distributed cache.
 - Exactly once delivery and message ordering is challenging in a distributed system, we can use a dedicated [message broker](https://karanpratapsingh.com/courses/system-design/message-brokers) such as [Apache Kafka](https://kafka.apache.org) or [NATS](https://nats.io) to make our notification system more robust.
 
+# Roadmap additions
+
+This chapter fills the gaps between the course material above and the [system design roadmap](system-design-roadmap.md). It is intentionally concise: use these notes to select a design, then follow the cross-referenced chapters and diagrams for the underlying mechanics.
+
+# Performance and consistency trade-offs
+
+## Performance vs Scalability
+
+**Performance** is how quickly and efficiently a system handles work at a given load: latency, throughput, CPU, memory, and I/O. **Scalability** is how well it preserves that performance as demand grows.
+
+- **Vertical scaling** makes one node more powerful. It is simple, but bounded and increases the impact of a node failure.
+- **Horizontal scaling** adds nodes. It raises capacity and availability, but requires stateless services or carefully managed shared state, partitioning, coordination, and traffic distribution.
+
+![performance-consistency](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/performance-consistency.png)
+
+Do not scale pre-emptively. First identify the saturated resourceâ€”CPU, connection pool, database I/O, network, lock contention, or a queueâ€”and choose the smallest change that relieves it.
+
+## Latency vs Throughput
+
+**Latency** is the time for one operation to complete. Report percentiles (p50, p95, p99, p99.9), not only the average, because users experience slow-tail requests. **Throughput** is completed work per unit of time.
+
+As utilization approaches saturation, queues lengthen and latency rises nonlinearly. Keep headroom, bound queues, eliminate serial calls in critical paths, and use timeouts/deadlines. Little's Law is useful for estimation:
+
+> concurrent work â‰ˆ throughput Ã— average latency
+
+For example, 2,000 requests/second at 200 ms average latency means roughly 400 requests are in flight.
+
+## Consistency patterns
+
+CAP and PACELC describe the high-level trade-off; select a concrete guarantee **per operation**:
+
+- **Strong consistency:** a completed write is visible to subsequent reads in a single global order. Use it for balances, exclusive ownership, and safety-critical invariants. It usually costs coordination and latency.
+- **Eventual consistency:** replicas converge if writes stop. It is appropriate for feeds, analytics, counters, and other data that can be briefly stale.
+- **Weak consistency:** there is limited or no freshness guarantee. It is only appropriate when callers truly do not depend on read freshness.
+
+Useful intermediate guarantees include read-your-writes, monotonic reads, causal consistency, session affinity, version checks, and read/write quorums. State the required behavior in user terms: for example, â€œafter changing a password, every session must immediately reject the old credential.â€
+
+# Background jobs
+
+![background-jobs](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/background-jobs.png)
+
+Run work asynchronously when the caller does not need the result before the request returns: media processing, email, billing, indexing, report generation, fan-out, and slow third-party calls.
+
+- **Event-driven jobs** react to durable domain events, such as an order being placed. They support decoupled consumers and fan-out, but consumers must tolerate duplicate and reordered delivery.
+- **Schedule-driven jobs** run at a time or interval. Make schedules timezone-aware, prevent overlapping executions, and persist checkpoints so missed work can be replayed.
+- **Returning results** can use a status endpoint with polling, a webhook/callback, Server-Sent Events, or a response topic. Persist the job state; do not rely on a worker's memory.
+
+Every job needs durable handoff, an idempotency key, retry limits with backoff and jitter, observability, and a dead-letter/quarantine path. A task queue normally gives one worker a task; pub/sub sends an event to many independent consumers.
+
+Apply **backpressure** when downstream capacity is lower than incoming work: bound queues, limit in-flight requests, slow producers, or shed nonessential work with a clear retry signal. An unbounded queue turns a temporary overload into an out-of-memory failure or hours of stale work.
+
+# Caching strategies
+
+![caching-strategies](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/caching-strategies.png)
+
+![caching-strategies](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/caching-strategies.png)
+
+For each cache, document its key, source of truth, TTL, invalidation or refresh mechanism, eviction behavior, capacity, and behavior when the cache is unavailable. A high hit rate is useful only if the cache remains correct enough for the use case.
+
+- **Cache-aside:** the application reads cache first, reads the database on a miss, then populates cache. It is flexible, but invalidation remains application responsibility.
+- **Refresh-ahead:** refresh popular keys before expiry. It prevents miss spikes but can waste work when predictions are wrong.
+- **Write-through:** write cache and backing store together. Reads are fresh, but every write pays both costs.
+- **Write-behind:** acknowledge a cache write and persist it asynchronously. It lowers write latency but adds data-loss and recovery risk; use durable handoff and explicit semantics.
+
+Client, CDN, reverse-proxy, application, and database caches work at different scopes. Prevent cache stampedes with request coalescing, TTL jitter, stale-while-revalidate, per-key locking, or a controlled fallback to the origin.
+
+# Operations and monitoring
+
+## Performance antipatterns
+
+- **Improper instantiation:** repeatedly create expensive clients or connections. Use pools and safe reuse.
+- **Busy database / busy frontend:** a saturated shared dependency slows everyone. Protect it with caching, pagination, queues, concurrency limits, and isolation.
+- **Monolithic persistence:** every service sharing one schema makes independent change risky. Give domains clear data ownership and integration contracts.
+- **Noisy neighbor:** one tenant monopolizes shared resources. Use quotas, weighted fairness, and tenancy isolation.
+- **Chatty I/O:** many small serial calls multiply latency. Batch, aggregate, parallelize with limits, or redesign the boundary.
+- **Synchronous I/O on the critical path:** broad fan-out turns a local slowdown into user-visible failure. Move nonessential work async and use per-dependency deadlines.
+- **Retry storm:** retries amplify a failing dependency. Use exponential backoff with jitter, retry budgets, circuit breaking, and load shedding.
+- **Extraneous fetching / no caching:** avoid fetching data the user does not need, and cache stable repeated data only with defined freshness and failure rules.
+
+## Monitoring
+
+![operations-monitoring](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/operations-monitoring.png)
+
+Monitoring should answer whether users can accomplish their goal and why not. Cover:
+
+- **Health monitoring:** readiness (safe to receive traffic) and liveness (restart may help), without probes overloading dependencies.
+- **Availability monitoring:** synthetic/user-journey checks and SLO/SLI tracking, not only process uptime.
+- **Performance monitoring:** p50/p95/p99 latency, error rate, throughput, and saturation for every important dependency.
+- **Security monitoring:** authentication failures, privilege changes, anomalous access, secret use, and policy denials.
+- **Usage monitoring:** feature adoption, tenant quotas, storage growth, and cost drivers.
+
+Instrument requests with structured logs, metrics, traces, correlation IDs, and business events. Alerts need an owner, a runbook, deduplication, and a user-impact threshold; avoid paging on noisy symptoms such as a brief CPU spike.
+
+# Cloud design patterns
+
+![cloud-design-patterns](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/cloud-design-patterns.png)
+
+Patterns are building blocks, not a required checklist. Use them only when their trade-off matches the problem.
+
+| Pattern | Use it when | Watch for |
+| --- | --- | --- |
+| Strangler Fig | Replacing a legacy capability incrementally by routing slices of traffic to a new system. | Reversible routing/data migration and avoiding permanent dual sources of truth. |
+| Sidecar | A workload needs local cross-cutting behavior such as proxying, telemetry, or secrets. | Extra per-instance resource, configuration, and failure complexity. |
+| Static Content Hosting | Immutable assets can be served from object storage and a CDN. | Versioned URLs, cache headers, origin protection, and purge behavior. |
+| Leader Election | Exactly one instance must coordinate singleton work. | Leases, fencing tokens, and split-brain protection. |
+| CQRS | Read and write workloads need different models or scale. | Replica lag and the operational cost of two models. |
+| Pipes and Filters | A transformation can be composed from independently operated stages. | Message schema, ordering, retry, and end-to-end observability. |
+| Ambassador | A local helper/proxy can handle outbound cross-cutting concerns. | Hiding essential behavior from service owners. |
+| Gateway Routing | The edge must route requests to appropriate services. | A gateway that becomes a business-logic monolith. |
+| Gateway Offloading | TLS, auth validation, rate limiting, or caching belongs at the edge. | Retaining defence in depth within services. |
+| Gateway Aggregation | A client needs a response assembled from several services. | Serial fan-out and a central bottleneck. |
+| External Config Store | Config must change independently of deployment artifacts. | Secure access, audit, validation, and outage behavior. |
+| Compute Resource Consolidation | Low-utilization workloads can share capacity. | Workload/tenant isolation. |
+| Backend for Frontend | Web and mobile clients need distinct API composition. | Duplicating domain logic across BFFs. |
+| Anti-Corruption Layer | A legacy or external model must not leak into a domain. | Maintaining the boundary as a real translation layer. |
+
+## Data-management patterns
+
+- **Valet Key:** issue a short-lived, narrowly scoped token so a client directly accesses a storage object rather than relaying it through an application server.
+- **Materialized View:** precompute a query result for fast reads; define its freshness, refresh, and rebuild procedure.
+- **Index Table:** maintain lookup-oriented keys separately from primary data.
+- **Event Sourcing:** store append-only domain events and build projections of current state. It supports audit/replay but requires schema evolution, snapshots, and correct event design.
+
+## Messaging patterns
+
+- **Sequential Convoy:** a slow message at the head of an ordered queue blocks later messages; safely partition, prioritize, or isolate slow work.
+- **Scheduler Agent Supervisor:** schedule work while detecting and restarting failed agents; persist ownership and checkpoints.
+- **Queue-based Load Leveling:** buffer bursts and consume at a sustainable rate; give the queue a capacity limit, backlog SLO, and overload policy.
+- **Priority Queue:** serve urgent work first while using aging, quotas, or reserved capacity to prevent starvation.
+- **Competing Consumers:** multiple workers pull from one queue to scale processing; do not require global ordering.
+- **Choreography:** services react to events without a central coordinator; add traceability and clear ownership so flows remain understandable.
+- **Claim Check:** put a large payload in object storage and send a secure, expiring reference in the message.
+- **Async Request Reply:** acknowledge work promptly, then expose/deliver the result later with a status and expiry policy.
+
+# Reliability patterns
+
+![reliability-patterns](https://raw.githubusercontent.com/karanpratapsingh/system-design/main/diagrams/reliability-patterns.png)
+
+Start with an SLO and error budget, then choose a pattern for the actual failure mode:
+
+- **Deployment Stamps:** deploy isolated copies by region, tenant group, or scale unit to limit blast radius.
+- **Geodes:** route users to nearby independent regional deployments; plan for fail-over, replication conflicts, and data residency.
+- **Throttling:** deliberately limit accepted work to protect essential requests; make the retry behavior clear and fair.
+- **Bulkhead:** isolate connection pools, queues, threads, or tenants so one failure cannot exhaust shared capacity.
+- **Circuit Breaker:** after repeated failures, fail fast for a period and allow limited recovery probes. Pair it with a fallback and dependency metrics.
+- **Compensating Transaction:** use a reversible business action when a distributed workflow cannot be globally atomic. It is not a database rollback.
+- **Retry:** only retry transient, safe work, using deadlines, bounded exponential backoff with jitter, and a retry budget.
+- **Federated Identity:** use a trusted identity provider and validate token signature, issuer, audience, expiry, and least-privilege claims.
+- **Gatekeeper:** enforce access policy directly in front of protected resources and ensure there are no bypass paths.
+
+See the local [diagram collection](diagrams/README.md) for visual references. In every design, narrate the request path, identify authoritative state, explain failure behavior, and quantify the first likely bottleneck.
+
 # Next Steps
 
 Congratulations, you've finished the course!
@@ -5758,3 +6080,6 @@ Here are the resources that were referenced while creating this course.
 - [VMWare Blogs](https://blogs.vmware.com/learning)
 
 _All the diagrams were made using [Excalidraw](https://excalidraw.com) and are available [here](https://github.com/karanpratapsingh/system-design/tree/main/diagrams)._
+
+
+
